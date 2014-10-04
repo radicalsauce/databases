@@ -14,8 +14,8 @@ exports.postMessage = function(req, res) {
 
   var resultsCallback = function (results) {
       var chat = {
-        message: message.message,
-        userid: results[0].id,
+        message: message.text,
+        userid: results[0].userID,
         roomname: message.roomname
       };
 
@@ -29,10 +29,12 @@ exports.postMessage = function(req, res) {
       findUser(msg.username, function (err, results) {
         // no results/0 results
         if (!results || !results.length) {
+          console.log('hitting saveuser')
           // create the user, then post the message
           saveUser(message.username, resultsCallback);
         } else {
           // user exists, post the message to this user
+          console.log("results ",results);
           resultsCallback(results);
         }
       });

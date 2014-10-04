@@ -18,7 +18,7 @@ var router = function(req, res) {
 
   console.log("%s -- %s", method, path);
 
-  if (path === '/classes/messages') {
+  if (path === '/') {
     if (method === 'POST') {
       handlers.postMessage(req, res);
     } else if (method === 'GET') {
@@ -27,7 +27,7 @@ var router = function(req, res) {
       handlers.sendOptionsResponse(req, res);
     }
   } else {
-    handlers.sendResponse(res, '', 404);
+    serverHelpers.sendResponse(res, '', 404);
   }
 };
 

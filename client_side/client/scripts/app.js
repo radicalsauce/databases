@@ -18,7 +18,7 @@ var app = {
     that.fetch();
     setInterval(function(){
       that.fetch();
-    },10000);
+    },2000);
   },
 
   send: function(message) {
@@ -42,12 +42,12 @@ var app = {
 
     app.clearMessages();
 
-    for (var i = 0; i < data.results.length; i++) {
-      if (data.results[i].username === targetUsername) {
-        app.addMessage(data.results[i]);
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].username === targetUsername) {
+        app.addMessage(data[i]);
       } else if (targetUsername === null) {
-        app.addMessage(data.results[i]);
-        app.addRoom(data.results[i].roomname);
+        app.addMessage(data[i]);
+        app.addRoom(data[i].roomname);
       }
     }
   },
@@ -74,20 +74,19 @@ var app = {
     var username;
     var text;
 
-
-    if (message.username === undefined || message.text === undefined) {
+    if (message.username === undefined || message.body === undefined) {
       username = "undefined";
       text = "undefined";
     } else {
       username = message.username.replace(/[^a-z,.!?' ]+/gi, " ");
-      text = message.text.replace(/[^a-z,.!?' ]+/gi, ", I am a dick");
+      text = message.body.replace(/[^a-z,.!?' ]+/gi, ", I am a dick");
     }
     if (app.friends.indexOf(username) !== -1) {
       username =  "<b>" + username + "</b>";
       text = "<b>" + text + "</b>";
     }
     var $toSend = '<div class="chat"><a class="username">' + username + '</a>: ' + text + app.messageOptions + '</div>';
-    $('#chats').append($toSend);
+    $('#chats').prepend($toSend);
   },
 
   clearMessages: function() {

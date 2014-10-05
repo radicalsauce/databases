@@ -16,16 +16,6 @@ CREATE TABLE users (
   PRIMARY KEY (userID)
 );
 
--- CREATE TABLE rooms (
---   roomname VARCHAR(50),
---   roomID int(11) NOT NULL auto_increment,
---   PRIMARY KEY (roomID)
--- );
-
-/* Create other tables and define schemas for them here! */
-
-
-
 
 /*  Execute this file from the command line by typing:
  *    mysql < schema.sql

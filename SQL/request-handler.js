@@ -29,12 +29,10 @@ exports.postMessage = function(req, res) {
       findUser(msg.username, function (err, results) {
         // no results/0 results
         if (!results || !results.length) {
-          console.log('hitting saveuser')
           // create the user, then post the message
           saveUser(message.username, resultsCallback);
         } else {
           // user exists, post the message to this user
-          console.log("results ",results);
           resultsCallback(results);
         }
       });
@@ -43,7 +41,7 @@ exports.postMessage = function(req, res) {
 
 exports.getMessages = function(req, res) {
   findMessages(function(err, messages) {
-      serverHelpers.sendResponse(res, messages);
+    serverHelpers.sendResponse(res, messages);
   });
 };
 
